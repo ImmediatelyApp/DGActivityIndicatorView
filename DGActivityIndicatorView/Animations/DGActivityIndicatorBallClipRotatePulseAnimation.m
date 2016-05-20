@@ -25,6 +25,7 @@
         scaleAnimation.duration = duration;
         scaleAnimation.repeatCount = HUGE_VALF;
         scaleAnimation.timingFunctions = @[timingFunction, timingFunction];
+        scaleAnimation.removedOnCompletion = NO;
         
         CGFloat circleSize = size.width / 2;
         CALayer *circle = [CALayer layer];
@@ -47,6 +48,7 @@
                                   [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0f, 1.0f, 1.0f)]];
         scaleAnimation.duration = duration;
         scaleAnimation.timingFunctions = @[timingFunction, timingFunction];
+        scaleAnimation.removedOnCompletion = NO;
         
         // Rotate animation
         CAKeyframeAnimation *rotateAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -55,13 +57,15 @@
         rotateAnimation.keyTimes = scaleAnimation.keyTimes;
         rotateAnimation.duration = duration;
         rotateAnimation.timingFunctions = @[timingFunction, timingFunction];
+        rotateAnimation.removedOnCompletion = NO;
         
         // Animation
         CAAnimationGroup *animation = [CAAnimationGroup animation];
         
         animation.animations = @[scaleAnimation, rotateAnimation];
         animation.duration = duration;
-        animation.repeatCount = HUGE_VALF;
+        animation.repeatCount = HUGE_VALF
+        animation.removedOnCompletion = NO;
         
         // Draw big circle
         CGFloat circleSize = size.width;
